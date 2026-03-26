@@ -34,32 +34,25 @@ Looker Studio (Dashboard)
 ---
 
 ## 🗂️ Project Structure
-
+```
 crypto-api-data-pipeline-dbt-and-bigquery/
 │
 ├── ingestion/
-│   └── main.py          # Extract & load to BigQuery
+│   └── main.py              # Extract & load to BigQuery
 │
 ├── dbt/
 │   ├── models/
-│   │   ├── staging/     # stg_crypto.sql
-│   │   └── mart/        # crypto_summary.sql
-│   │                    # crypto_indexed.sql (Base 100)
+│   │   ├── staging/
+│   │   │   └── stg_crypto.sql
+│   │   └── mart/
+│   │       ├── crypto_summary.sql
+│   │       └── crypto_indexed.sql   # Base 100 normalization
 │   └── profiles.yml
 │
-├── screenshots/         # Dashboard previews
+├── screenshots/             # Dashboard previews
 ├── requirements.txt
 └── README.md
 ```
-
----
-
-## Setelah Update
-
-Commit message yang bisa kamu pakai:
-```
-docs: improve README with project structure, insights, and contact info
-
 ---
 ## 📊 Data Models
 

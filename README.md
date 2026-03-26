@@ -33,6 +33,34 @@ Looker Studio (Dashboard)
 
 ---
 
+## 🗂️ Project Structure
+
+crypto-api-data-pipeline-dbt-and-bigquery/
+│
+├── ingestion/
+│   └── main.py          # Extract & load to BigQuery
+│
+├── dbt/
+│   ├── models/
+│   │   ├── staging/     # stg_crypto.sql
+│   │   └── mart/        # crypto_summary.sql
+│   │                    # crypto_indexed.sql (Base 100)
+│   └── profiles.yml
+│
+├── screenshots/         # Dashboard previews
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Setelah Update
+
+Commit message yang bisa kamu pakai:
+```
+docs: improve README with project structure, insights, and contact info
+
+---
 ## 📊 Data Models
 
 ### 🔹 Staging Layer
@@ -72,31 +100,45 @@ Looker Studio (Dashboard)
 
 ## ⚙️ How to Run
 
-### 1. Install dependencies
+### Prerequisites
+- Python 3.8+
+- Google Cloud account with BigQuery enabled
+- Service account key (JSON) with BigQuery permissions
+- dbt installed (`pip install dbt-bigquery`)
 
-```
+### Setup
+1. Clone this repository
+2. Copy your GCP service account key to the project root
+3. Configure `dbt/profiles.yml` with your BigQuery project ID
+
+### 1. Install dependencies
 pip install -r requirements.txt
-```
 
 ### 2. Run ingestion script
-
-```
 python ingestion/main.py
-```
 
 ### 3. Run dbt models
-
-```
 dbt run
-```
 
+### 4. Verify in BigQuery
+Check your BigQuery console — you should see:
+- Raw table: `raw.crypto_prices`
+- Staging: `staging.stg_crypto`
+- Mart: `mart.crypto_summary`
+- Analytics: `mart.crypto_indexed`
 ---
 
 ## 💡 Key Insights
 
-* Bitcoin has higher absolute price but lower relative growth compared to Ethereum
-* Indexed analysis provides a clearer comparison across assets with different scales
-
+- Ethereum outperformed Bitcoin in relative terms during the observed 
+  period, gaining ~15% vs Bitcoin's ~10% when measured from the same 
+  base index (Base 100)
+- Indexed price normalization reveals performance gaps that are 
+  completely invisible when comparing absolute prices — BTC at $69K 
+  vs ETH at $2K looks incomparable, but Base 100 tells the real story
+- Live API ingestion via CoinGecko enables continuous time-series 
+  accumulation, making the dataset more valuable the longer the 
+  pipeline runs
 ---
 
 ## 🎯 What I Learned
@@ -110,4 +152,7 @@ dbt run
 
 ## 📬 Contact
 
-Feel free to connect with me on LinkedIn!
+Let's connect! I'm actively looking for Data Engineer opportunities.
+
+🔗 LinkedIn : linkedin.com/in/antonius-tanianto
+📧 Email    : antoniustanianto@gmail.com
